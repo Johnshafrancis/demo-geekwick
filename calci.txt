@@ -1,0 +1,44 @@
+import math
+
+def add(x, y): return x + y
+def subtract(x, y): return x - y
+def multiply(x, y): return x * y
+def divide(x, y): 
+    return x / y if y != 0 else "Undefined (Division by Zero)"
+
+# Mapping choices to functions
+operations = {
+    "1": ("Add", add),
+    "2": ("Subtract", subtract),
+    "3": ("Multiply", multiply),
+    "4": ("Divide", divide)
+}
+
+def run_calculator():
+    print("--- Python Command Line Calculator ---")
+    
+    for key, value in operations.items():
+        print(f"{key}. {value[0]}")
+
+    while True:
+        choice = input("\nSelect operation (1-4) or 'q' to quit: ").strip()
+
+        if choice.lower() == 'q':
+            break
+
+        if choice in operations:
+            try:
+                num1 = float(input("Enter first number: "))
+                num2 = float(input("Enter second number: "))
+                
+                name, func = operations[choice]
+                result = func(num1, num2)
+                
+                print(f"Result of {name}: {result}")
+            except ValueError:
+                print("Invalid input! Please enter numbers only.")
+        else:
+            print("Invalid selection. Try again.")
+
+if __name__ == "__main__":
+    run_calculator()
